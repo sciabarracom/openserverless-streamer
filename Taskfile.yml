@@ -95,7 +95,7 @@ tasks:
       Push the tags, starting the GitHub Actions build on the repo that received them.
       This does not build anything locally.
     cmds:
-      - git push --tags --force
+      - git push --tags
 
   buildx:
     desc: |
@@ -125,7 +125,7 @@ tasks:
         cd src
         go test -v ./...
         cd ../
-  
+
   build:
     desc: |
       Build the docker image locally and load it into the local docker daemon.
@@ -141,7 +141,7 @@ tasks:
         rm -f streamer
         cd src
         echo "Building streamer binary..."
-        if test -n "{{.OPTIMIZE}}" 
+        if test -n "{{.OPTIMIZE}}"
         then {{.DRY}} CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o ../streamer
         else {{.DRY}} go build -o ../streamer
         fi
@@ -152,11 +152,11 @@ tasks:
           exit 1
         fi
         cd ../
-  
+
   clean:
     desc: |
       Clean up the build artifacts. This will remove the streamer binary and clean the go cache.
-    cmds:  
+    cmds:
     - |
       rm -f streamer || true
       cd src
