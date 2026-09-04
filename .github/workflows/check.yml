@@ -16,17 +16,18 @@
 # under the License.
 #
 
-name: Check OpenServerless Streamer
-on: 
+name: Check
+on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   check:
     name: Check OpenServerless Streamer
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v7
