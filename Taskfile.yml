@@ -19,7 +19,7 @@ version: "3"
 
 vars:
   BASETAG: 0.9.0-incubating
-  SUFFIX: "-SNAPSHOT"
+  SUFFIX: "-snapshot"
   COMMIT_ID:
     sh: git rev-parse --short HEAD
   # taken from the tag - overridable with STREAMER_TAG env var
@@ -82,7 +82,7 @@ tasks:
     silent: true
     vars:
       TS:
-        sh: date '+%y %m %d %H %M' | awk '{printf "%s%s%d%s%d\n", $1, substr("abcdefghijkl",$2+0,1), $3, substr("abcdefghijklmnopqrstuvwx",$4+1,1), $5}'
+        sh: date '+%y %m %d %H %M' | awk '{printf "%s%s%02d%s%02d\n", $1, substr("abcdefghijkl",$2+0,1), $3, substr("abcdefghijklmnopqrstuvwx",$4+1,1), $5}'
     cmds:
       - git tag -d $(git tag) 2>/dev/null || true
       - |
